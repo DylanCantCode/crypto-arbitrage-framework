@@ -1,13 +1,13 @@
-from docplex.mp.model import Model
+import docplex.mp.model as model
 import numpy as np
 from itertools import combinations
-from .info import fiat, trading_fee, tokens
-from .utils import get_withdrawal_fees, get_crypto_prices, multiThread
+from crypto.info import fiat, trading_fee, tokens
+from crypto.utils import get_withdrawal_fees, get_crypto_prices, multiThread
 import re
 from copy import deepcopy
 
 
-class PathOptimizer(Model):
+class PathOptimizer(model.Model):
     '''
     optimization model class for solving multi-lateral arbitrage path that maximizes profit.
     It outputs value zero when no arbitrage opportunity is found. When an opportunity is found,

@@ -1,5 +1,5 @@
 import requests
-from lxml import html
+from lxml import etree as html
 import re
 from requests import Session
 import json
@@ -17,7 +17,7 @@ def get_withdrawal_fees(exchange, trading_size=1000):
     withdrawal_fee = {}
     response = requests.get('https://withdrawalfees.com/exchanges/{}'.format(exchange))
     if response.ok:
-        tree = html.fromstring(response.content)
+        tree = html.HTML(response.content)
 
         for ele in tree.xpath('//tbody//tr'):
             coin_name = ele.xpath('.//div[@class="symbol"]/text()')[0]
@@ -50,7 +50,7 @@ def get_crypto_prices(coin_set, convert='USD'):
     }
     headers = {
         'Accepts': 'application/json',
-        'X-CMC_PRO_API_KEY': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+        'X-CMC_PRO_API_KEY': 'c0729cb6-591f-4345-86d7-314b4d6f4b8c',
     }
 
     session = Session()

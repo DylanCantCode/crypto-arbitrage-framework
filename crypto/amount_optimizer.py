@@ -1,11 +1,11 @@
-from docplex.mp.model import Model
+import docplex.mp.model as model
 import numpy as np
 from itertools import combinations
-from .utils import multiThread
+from crypto.utils import multiThread
 from collections import OrderedDict
 
 
-class AmtOptimizer(Model):
+class AmtOptimizer(model.Model):
     '''
     optimization model class for solving the trading amount, price and buy-sell direction in each step of the abitrage path.
     The output is an OrderedDict that records (amount, price , direction) for each step, when given arbitrage path.
